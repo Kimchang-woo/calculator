@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <h1>2024 SPACE ODYSSEY</h1>
+    <div class="outbox">
+      <div class="blHall"
+        id="blhall1"
+        onclick="location.href='./cal.html'"
+      >
+        <div id="blhname1">Calculator Hall</div>
+      </div>
+      <div class="blHall"
+        id="blhall2"
+        onclick="location.href='./binaryconverter.html'"
+      >
+        <div id="blhname2">Binary Converter Hall</div>
+      </div>
+    </div>
+    <div class="spaceship"></div>
+    <div class="escbtn" onclick="location.href='http://kcw0827.dothome.co.kr/Portfolio/index.html#Portfolio'">Escape</div>
+    <script>
+      let blhall1 = document.querySelector("#blhall1");
+      let blhall2 = document.querySelector("#blhall2");
+      let blhname1 = document.querySelector("#blhname1");
+      let blhname2 = document.querySelector("#blhname2");
+      let spaceship = document.querySelector(".spaceship");
+      blhall1.addEventListener("mouseover", function () {
+        blhall1.classList.add("on");
+        blhname1.classList.add("on");
+      });
+      blhall1.addEventListener("mouseout", function () {
+        blhall1.classList.remove("on");
+        blhname1.classList.remove("on");
+      });
+
+      blhall2.addEventListener("mouseover", function () {
+        blhall2.classList.add("on");
+        blhname2.classList.add("on");
+      });
+      blhall2.addEventListener("mouseout", function () {
+        blhall2.classList.remove("on");
+        blhname2.classList.remove("on");
+      });
+      document.addEventListener("mousemove", function (m) {
+        let mouseX = m.clientX;
+        let mouseY = m.clientY;
+        spaceship.style.left = mouseX + "px";
+        spaceship.style.top = mouseY + "px";
+      });
+    </script>
+  </body>
+</html>

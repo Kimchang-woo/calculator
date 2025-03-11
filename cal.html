@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calculator</title>
+  <link rel="stylesheet" href="./cal.css" />
+</head>
+<body>
+<div class="outbox">
+  <h1>Calculator</h1>
+  <div class="calbox">
+    <div class="inbox">
+      <div id="disbox"></div>
+      <div class="line">
+        <button class="anocol" onclick="removeall()">C</button>
+        <button class="anocol" onclick="opp('%')">%</button>
+        <button class="anocol" onclick="backspace()">←</button>
+        <button class="anocol" onclick="opp('/')">÷</button>
+      </div>
+      <div class="line">
+        <button onclick="char(7)">7</button>
+        <button onclick="char(8)">8</button>
+        <button onclick="char(9)">9</button>
+        <button class="anocol" onclick="opp('*')">×</button>
+      </div>
+      <div class="line">
+        <button onclick="char(4)">4</button>
+        <button onclick="char(5)">5</button>
+        <button onclick="char(6)">6</button>
+        <button class="anocol" onclick="opp('-')">−</button>
+      </div>
+      <div class="line">
+        <button onclick="char(1)">1</button>
+        <button onclick="char(2)">2</button>
+        <button onclick="char(3)">3</button>
+        <button class="anocol" onclick="opp('+')">+</button>
+      </div>
+      <div class="line">
+        <button onclick="char('.')">.</button>
+        <button onclick="char(0)">0</button>
+        <button onclick="backspace()">←</button>
+        <button onclick="cal()">=</button>
+      </div>
+    </div>
+  </div>
+  <div class="escbtn" onclick="location.href='index.html'">Escape</div>
+</div>
+
+<script>
+  let input = "";
+  let temp = "";
+  let disbox = document.getElementById("disbox");
+  let num1 = 0;
+  let oppp = "";
+
+  function char(n) {
+    input += n;
+    disbox.innerHTML = temp + input;
+  }
+
+  function opp(k) {
+    if (input === "") return; // 빈 상태에서 연산자 클릭 방지
+    num1 = parseFloat(input);
+    temp += input + " " + k + " ";
+    disbox.innerHTML = temp;
+    input = "";
+    oppp = k;
+  }
+
+  function cal() {
+    if (input === "") return; // 빈 입력 방지
+    let num2 = parseFloat(input);
+    let rel = 0;
+
+    switch (oppp) {
+      case "+":
+        rel = num1 + num2;
+        break;
+      case "-":
+        rel = num1 - num2;
+        break;
+      case "*":
+        rel = num1 * num2;
+        break;
+      case "/":
+        rel = num2 === 0 ? "ERROR" : num1 / num2; // 0으로 나누기 방지
+        break;
+      case "%":
+        rel = num1 % num2;
+        break;
+      default:
+        return;
+    }
+
+    temp += `${num2} = ${rel.toLocaleString()}`;
+    disbox.innerHTML = temp;
+    input = "";
+    num1 = 0;
+    temp = "";
+  }
+
+  function backspace() {
+    if (input.length > 0) {
+      input = input.slice(0, -1);
+      disbox.innerHTML = temp + input;
+    } else {
+      disbox.innerHTML = "ERROR";
+    }
+  }
+
+  function removeall() {
+    disbox.innerHTML = "";
+    input = "";
+    num1 = 0;
+    temp = "";
+  }
+</script>
+</body>
+</html>

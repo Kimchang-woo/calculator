@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./binaryconverter.css" />
+  </head>
+  <body>
+    <div class="outbox">
+      <h1>Binary Converter</h1>
+      <div class="conbox">
+        <div class="inbox">
+          <input type="number" id="num" placeholder="Please enter a number" />
+          <button class="conbtn" onclick="binary()">2진수</button>
+          <button class="conbtn" onclick="octal()">8진수</button>
+          <button class="conbtn" onclick="hexadecimal()">16진수</button>
+          <div id="dis"></div>
+          <button class="rebtn" onclick="reset()">reset</button>
+        </div>
+      </div>
+      <div class="escbtn" onclick="location.href='index.html'">escape</div>
+    </div>
+    <script>
+      let dis = document.getElementById("dis");
+      //2진수 함수 시작
+      function binary() {
+        let num = Number(document.getElementById("num").value);
+        let res1 = calbin(num);
+        dis.innerHTML = res1;
+        console.log(res1);
+      }
+      function calbin(a) {
+        let ans = "";
+        for (let i = a; i > 0; i = Math.floor(i / 2)) {
+          ans = (i % 2) + ans;
+        }
+        return ans;
+      }
+      // 8진수 함수 시작
+      function octal() {
+        let num = Number(document.getElementById("num").value);
+        let res2 = caloct(num);
+        dis.innerHTML = res2;
+      }
+      function caloct(a) {
+        let ans = "";
+        for (let i = a; i > 0; i = Math.floor(i / 8)) {
+          ans = (i % 8) + ans;
+        }
+        return ans;
+      }
+      // 16진수 함수 시작
+      function hexadecimal() {
+        let num = Number(document.getElementById("num").value);
+        let res3 = calhexa(num);
+        dis.innerHTML = res3;
+      }
+      function calhexa(a) {
+        let ans = "";
+        for (let i = a; i > 0; i = Math.floor(i / 16)) {
+          if (i % 16 < 10) {
+            ans = (i % 16) + ans;
+          }
+          if (i % 16 == 10) {
+            ans = "a" + ans;
+          } else if (i % 16 == 11) {
+            ans = "b" + ans;
+          } else if (i % 16 == 12) {
+            ans = "c" + ans;
+          } else if (i % 16 == 13) {
+            ans = "d" + ans;
+          } else if (i % 16 == 14) {
+            ans = "e" + ans;
+          } else if (i % 16 == 15) {
+            ans = "f" + ans;
+          }
+        }
+        return ans;
+      }
+      function reset() {
+        document.getElementById("dis").innerHTML = "";
+        document.getElementById("num").value = "";
+      }
+    </script>
+  </body>
+</html>
